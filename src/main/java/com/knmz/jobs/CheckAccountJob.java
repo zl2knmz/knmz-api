@@ -21,9 +21,12 @@ public class CheckAccountJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) {
         String phoneOrEmail = "+8615018513737";
-        logger.info("CheckAccountJob start");
-        userService.checkAccount(phoneOrEmail);
-        logger.info("CheckAccountJob end");
+        boolean success = userService.checkAccount(phoneOrEmail);
+        if (success) {
+            logger.info("checkAccount success");
+        } else {
+            logger.info("checkAccount success");
+        }
 
     }
 }

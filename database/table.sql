@@ -19,3 +19,8 @@ CREATE TABLE `knmz_user` (
   KEY `IDX_HU_NICK` (`nick`),
   KEY `IDX_HU_REALNAME` (`real_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+USE `springbootdb`;
+
+insert  into `knmz_user`(`account`,`logo`,`password`,`nick`,`real_name`,`brief`,`email`,`phone`,`status`,`jpush_id`,`create_date`,`update_date`) values
+('123456789',NULL,'11038837210188E3B3','knmz','knmz',NULL,'123456@qq.com','+8615018513737',1,NULL,'2019-11-08 17:54:07','2019-11-08 17:54:12');

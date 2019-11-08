@@ -12,17 +12,20 @@ public interface UserService {
     /**
      * 账号检查
      * @param phoneOrEmail 手机号或者邮箱
-     * @return b
+     * @return boolean
      */
     boolean checkAccount(String phoneOrEmail);
 
     /**
-     * 更新设备注册极光Id
+     * 登录
+     * @param phoneOrEmail 手机号或邮箱
+     * @param password 密码
      */
     Map<String, Object> login(String phoneOrEmail, String password);
 
     /**
-     * 更新设备注册极光Id
+     * 用户详情
+     * @param account 账号
      */
     Map<String, Object> getUserInfo(String account);
 
