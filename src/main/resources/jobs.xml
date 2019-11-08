@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job-scheduling-data
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+        xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
+        version="1.8">
+    <pre-processing-commands>
+        <delete-jobs-in-group>*</delete-jobs-in-group>
+        <delete-triggers-in-group>*</delete-triggers-in-group>
+    </pre-processing-commands>
+
+    <processing-directives>
+        <overwrite-existing-data>true</overwrite-existing-data>
+        <ignore-duplicates>false</ignore-duplicates>
+    </processing-directives>
+    <schedule>
+
+        <job>
+            <name>CheckAccountJob</name>
+            <group>KNMZ_API_GROUP</group>
+            <description>用户账号校验</description>
+            <job-class>com.knmz.jobs.CheckAccountJob</job-class>
+            <durability>true</durability>
+            <recover>false</recover>
+        </job>
+        <trigger>
+            <cron>
+                <name>CheckAccountJobTrigger</name>
+                <group>KNMZ_API_TRIGGER_GROUP</group>
+                <job-name>CheckAccountJob</job-name>
+                <job-group>KNMZ_API_GROUP</job-group>
+                <cron-expression>0 */3 * * * ?</cron-expression>
+            </cron>
+        </trigger>
+
+    </schedule>
+</job-scheduling-data>

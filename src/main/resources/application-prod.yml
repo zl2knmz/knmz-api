@@ -1,0 +1,55 @@
+server:
+  port: 8080
+  servlet:
+    # 项目contextPath
+    context-path: /knmz-api
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.4:3306/springbootdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=CTT
+    username: root
+    password: hdx2057BCa%
+  # quartz的一些属性配置
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: giftScheduler
+            instanceId: AUTO
+            skipUpdateCheck: true
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: KNMZ_QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          plugin:
+            jobInitializer:
+              class:  org.quartz.plugins.xml.XMLSchedulingDataProcessorPlugin
+              fileNames:  jobs.xml
+              failOnFileNotFound: true
+              scanInterval: 10
+              wrapInUserTransaction:  false
+    #数据库方式
+    job-store-type: jdbc
+  redis:
+    host: 192.168.1.95
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 10000ms
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
