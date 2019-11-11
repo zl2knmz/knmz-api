@@ -27,7 +27,7 @@ public interface UserPlusDao {
 
     /**
      * 批量修改昵称
-     * @param accounts 账号列表
+     * @param accountList 账号列表
      * @param nick 昵称
      * @return boolean
      */
