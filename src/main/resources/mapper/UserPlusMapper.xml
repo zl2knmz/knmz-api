@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.knmz.dao.UserPlusDao">
+    <update id="batchUpdateNick">
+        UPDATE knmz_user
+        SET nick = #{nick}, update_date = NOW()
+        WHERE status = 1 AND account in
+        <foreach item="item" index="index" collection="accounts" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    <update id="batchUpdateCreateData">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE knmz_user
+            <set>
+                create_date=#{createDate},
+                <if test="item.status > 0">status=#{item.status},</if>
+            </set>
+            <where>
+                account=#{item.account}
+            </where>
+        </foreach>
+    </update>
+</mapper>

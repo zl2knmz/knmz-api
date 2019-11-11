@@ -2,8 +2,8 @@ package com.knmz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.knmz.dao.UserDao;
 import com.knmz.entity.User;
-import com.knmz.mapper.UserMapper;
 import com.knmz.service.UserService;
 import com.knmz.utils.AssertUtil;
 import com.knmz.utils.DESUtils;
@@ -22,11 +22,11 @@ import java.util.Map;
  * @Date: 2019/7/23 20:47
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserService {
     private final static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private UserDao userDao;
 
     @Override
     public boolean checkAccount(String account) {
@@ -39,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             QueryWrapper<User> filter = new QueryWrapper<User>();
             filter.and(f -> f.eq("phone", finalAccount).or().eq("email", finalAccount).or().eq("account", finalAccount));
             filter.eq("status", 1);
-            isExist = userMapper.selectCount(filter) > 0;
+            isExist = userDao.selectCount(filter) > 0;
         }
         LOGGER.info("check account:" + account);
         return isExist;
@@ -57,7 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             filter.and(f -> f.eq("phone", finalPhoneOrEmail).or().eq("email", finalPhoneOrEmail));
             filter.eq("password", DESUtils.encrypt4dotnet(password));
             filter.eq("status", 1);
-            User user = userMapper.selectOne(filter);
+            User user = userDao.selectOne(filter);
             AssertUtil.notNull(user,"帳號密碼不正確");
             userMap = exportUserInfo(user);
         }
@@ -68,7 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Map<String, Object> getUserInfo(String account) {
-        User user = userMapper.selectById(account);
+        User user = userDao.selectById(account);
         return exportUserInfo(user);
     }
 
