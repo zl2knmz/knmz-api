@@ -1,5 +1,6 @@
 package com.knmz.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +30,19 @@ public interface UserService {
      */
     Map<String, Object> getUserInfo(String account);
 
+    /**
+     * 修改昵称
+     * @param account 账号
+     * @param nick 昵称
+     * @return boolean
+     */
+    boolean updateNick(String account, String nick);
+
+    /**
+     * 批量修改昵称
+     * @param accountList 账号列表
+     * @param nick 昵称
+     * @return boolean
+     */
+    boolean batchUpdateNick(List<String> accountList, String nick);
 }

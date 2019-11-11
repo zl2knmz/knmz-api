@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by reese on 2019-10-12.
  */
@@ -22,6 +25,13 @@ public class CheckAccountJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext context) {
         String phoneOrEmail = "+8615018513737";
         boolean success = userService.checkAccount(phoneOrEmail);
+        /*String account = "12345678";
+        String nick = "world";
+        boolean success1 = userService.updateNick(account, nick);
+        List<String> accountList = new ArrayList<>();
+        accountList.add("123456789");
+        String nick1 = "hello";
+        boolean success2 = userService.batchUpdateNick(accountList, nick1);*/
         if (success) {
             logger.info("checkAccount success");
         } else {

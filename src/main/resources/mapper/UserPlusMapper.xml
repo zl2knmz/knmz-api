@@ -5,10 +5,11 @@
         UPDATE knmz_user
         SET nick = #{nick}, update_date = NOW()
         WHERE status = 1 AND account in
-        <foreach item="item" index="index" collection="accounts" open="(" separator="," close=")">
+        <foreach item="item" index="index" collection="accountList" open="(" separator="," close=")">
             #{item}
         </foreach>
     </update>
+
     <update id="batchUpdateCreateData">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
             UPDATE knmz_user

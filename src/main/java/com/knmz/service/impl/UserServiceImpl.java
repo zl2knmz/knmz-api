@@ -3,6 +3,7 @@ package com.knmz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.knmz.dao.UserDao;
+import com.knmz.dao.UserPlusDao;
 import com.knmz.entity.User;
 import com.knmz.service.UserService;
 import com.knmz.utils.AssertUtil;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +29,9 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private UserPlusDao userPlusDao;
 
     @Override
     public boolean checkAccount(String account) {
@@ -55,7 +60,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             String finalPhoneOrEmail = phoneOrEmail;
             QueryWrapper<User> filter = new QueryWrapper<User>();
             filter.and(f -> f.eq("phone", finalPhoneOrEmail).or().eq("email", finalPhoneOrEmail));
-            filter.eq("password", DESUtils.encrypt4dotnet(password));
+//            filter.eq("password", DESUtils.encrypt4dotnet(password));
+            filter.eq("password", password);
             filter.eq("status", 1);
             User user = userDao.selectOne(filter);
             AssertUtil.notNull(user,"帳號密碼不正確");
@@ -70,6 +76,16 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public Map<String, Object> getUserInfo(String account) {
         User user = userDao.selectById(account);
         return exportUserInfo(user);
+    }
+
+    @Override
+    public boolean updateNick(String account, String nick) {
+        return userPlusDao.updateNick(account, nick);
+    }
+
+    @Override
+    public boolean batchUpdateNick(List<String> accounts, String nick) {
+        return userPlusDao.batchUpdateNick(accounts, nick);
     }
 
     /**
