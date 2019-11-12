@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * UserDao
  *
- * @Author: chenzeping
- * @Date: 2019/7/24 10:11
+ * @author zl
+ * @date 2019/7/24 10:11
  */
 @Mapper
 public interface UserDao extends BaseMapper<User> {

@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 /**
  * User
  *
- * @Author: chenzeping
- * @Date: 2019/7/24 10:11
+ * @author zl
+ * @date 2019/7/24 10:11
  */
 @Data
 @TableName("knmz_user")

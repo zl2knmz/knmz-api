@@ -1,7 +1,10 @@
 package com.knmz.constant;
 
 /**
- * Created by reese on 2019-07-29.
+ * 常量类
+ *
+ * @author zl
+ * @date 2019/11/12 11:02
  */
 public interface KnmzConstants {
     class COIT_TYPE {

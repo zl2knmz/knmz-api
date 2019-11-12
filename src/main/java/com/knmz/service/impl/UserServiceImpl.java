@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,8 @@ import java.util.Map;
 /**
  * UserServiceImpl
  *
- * @Author: chenzeping
- * @Date: 2019/7/23 20:47
+ * @author zl
+ * @date 2019/7/23 20:47
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserService {
@@ -64,7 +65,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             filter.eq("password", password);
             filter.eq("status", 1);
             User user = userDao.selectOne(filter);
-            AssertUtil.notNull(user,"帳號密碼不正確");
+            AssertUtil.notNull(user, "帳號密碼不正確");
             userMap = exportUserInfo(user);
         }
         LOGGER.info("login phone or email :" + phoneOrEmail);

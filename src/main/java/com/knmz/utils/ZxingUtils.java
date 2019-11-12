@@ -20,7 +20,10 @@ import java.util.Map;
 
 
 /**
- * Created by reese on 2019-10-15.
+ * 解析二维码工具类
+ *
+ * @author zl
+ * @date 2019/9/27 11:02
  */
 public class ZxingUtils {
 
@@ -48,7 +51,7 @@ public class ZxingUtils {
             return null;
 
         QRCodeReader reader = new QRCodeReader();
-        Map<DecodeHintType,Object> hints = new LinkedHashMap<DecodeHintType,Object>();
+        Map<DecodeHintType, Object> hints = new LinkedHashMap<DecodeHintType, Object>();
         //码设置编码方式为：utf-8，
         hints.put(DecodeHintType.CHARACTER_SET, Charsets.UTF_8);
         //优化精度
@@ -73,9 +76,8 @@ public class ZxingUtils {
         return null;
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         try {
-
 
 
             Path currentRelativePath = Paths.get(".");
@@ -83,31 +85,31 @@ public class ZxingUtils {
             String path = root + File.separator + "images" + File.separator + "img-base64.txt";
 
 
-            String imgBase64=new String (Files.readAllBytes(Paths.get(path)));
+            String imgBase64 = new String(Files.readAllBytes(Paths.get(path)));
 
-            if(imgBase64.indexOf("data:image/png;base64,")>-1){
-                imgBase64=imgBase64.replace("data:image/png;base64,","");
-            }else if(imgBase64.indexOf("data:image/jpg;base64,")>-1){
-                imgBase64=imgBase64.replace("data:image/jpg;base64,","");
-            }else if(imgBase64.indexOf("data:image/jpeg;base64,")>-1){
-                imgBase64=imgBase64.replace("data:image/jpeg;base64,","");
-            }else if(imgBase64.indexOf("data:image/gif;base64,")>-1){
-                imgBase64=imgBase64.replace("data:image/gif;base64,","");
-            }else if(imgBase64.indexOf("data:image/tiff;base64,")>-1){
-                imgBase64=imgBase64.replace("data:image/tiff;base64,","");
+            if (imgBase64.indexOf("data:image/png;base64,") > -1) {
+                imgBase64 = imgBase64.replace("data:image/png;base64,", "");
+            } else if (imgBase64.indexOf("data:image/jpg;base64,") > -1) {
+                imgBase64 = imgBase64.replace("data:image/jpg;base64,", "");
+            } else if (imgBase64.indexOf("data:image/jpeg;base64,") > -1) {
+                imgBase64 = imgBase64.replace("data:image/jpeg;base64,", "");
+            } else if (imgBase64.indexOf("data:image/gif;base64,") > -1) {
+                imgBase64 = imgBase64.replace("data:image/gif;base64,", "");
+            } else if (imgBase64.indexOf("data:image/tiff;base64,") > -1) {
+                imgBase64 = imgBase64.replace("data:image/tiff;base64,", "");
             }
             BASE64Decoder d = new BASE64Decoder();
             byte[] data = d.decodeBuffer(imgBase64);
-            String  content = ZxingUtils.readQRCode(data);
+            String content = ZxingUtils.readQRCode(data);
             System.out.println(content);
-            Map<String,Object> result=new HashMap<>();
+            Map<String, Object> result = new HashMap<>();
 
             // root = currentRelativePath.toAbsolutePath().toString();
             // path = root + File.separator + "images" + File.separator + "qr.jpg";
 
-           // String readQRCode = readQRCode(Files.readAllBytes(Paths.get(path)));
+            // String readQRCode = readQRCode(Files.readAllBytes(Paths.get(path)));
             //System.out.println(readQRCode);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

@@ -13,10 +13,10 @@ import javax.ws.rs.Path;
 import java.util.Set;
 
 /**
- * JerseyResourceConfig
+ * 接口扫描
  *
- * @Author: chenzeping
- * @Date: 2019/7/23 18:49
+ * @author zl
+ * @date 2019/7/23 18:49
  */
 @Component
 public class JerseyResourceConfig extends ResourceConfig {

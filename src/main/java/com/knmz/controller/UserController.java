@@ -23,8 +23,8 @@ import java.util.Map;
 /**
  * UserController
  *
- * @Author: chenzeping
- * @Date: 2019/7/23 18:57
+ * @author zl
+ * @date 2019/7/23 18:57
  */
 @Path("/user")
 @Produces("application/json;charset=utf-8")
@@ -98,28 +98,28 @@ public class UserController {
             }
             BASE64Decoder d = new BASE64Decoder();
             byte[] data = d.decodeBuffer(imgBase64);
-            String  content = ZxingUtils.readQRCode(data);
-            Map<String,Object> result=new HashMap<>();
-            if(content.startsWith("http")||content.startsWith("https")){
-                result.put("url",content);
-            }else{
-                if(content.startsWith("ethereum:")){
+            String content = ZxingUtils.readQRCode(data);
+            Map<String, Object> result = new HashMap<>();
+            if (content.startsWith("http") || content.startsWith("https")) {
+                result.put("url", content);
+            } else {
+                if (content.startsWith("ethereum:")) {
                     result.put("cointype", KnmzConstants.COIT_TYPE.ETH);
-                    result.put("address", content.replace("ethereum:",""));
-                }else if(content.startsWith("0x0")){
+                    result.put("address", content.replace("ethereum:", ""));
+                } else if (content.startsWith("0x0")) {
                     result.put("cointype", KnmzConstants.COIT_TYPE.ETH);
                     result.put("address", content);
-                }else if(content.startsWith("1") || content.startsWith("3")){
+                } else if (content.startsWith("1") || content.startsWith("3")) {
                     result.put("cointype", KnmzConstants.COIT_TYPE.BTC);
                     result.put("address", content);
                 }
             }
             ret.ok(result);
-        }catch(ServiceException ex){
+        } catch (ServiceException ex) {
             ret.fail(-1, ex.getErrorMessage());
 
-        }catch(IOException ex){
-            logger.error("scanQrcode error",ex);
+        } catch (IOException ex) {
+            logger.error("scanQrcode error", ex);
             ret.fail("識別二維碼錯誤");
         }
 

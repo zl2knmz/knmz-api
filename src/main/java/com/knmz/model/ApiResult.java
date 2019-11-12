@@ -3,8 +3,8 @@ package com.knmz.model;
 /**
  * ApiResult
  *
- * @Author: chenzeping
- * @Date: 2019/7/23 11:35
+ * @author zl
+ * @date 2019/7/23 11:35
  */
 public class ApiResult {
 
@@ -12,10 +12,12 @@ public class ApiResult {
      * 状态码：0代表成功，非0即失败
      */
     private int code;
+
     /**
      * 状态消息：失败时的错误提示
      */
     private String msg;
+
     /**
      * 数据结果：成功时的响应结果
      */

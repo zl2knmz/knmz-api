@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by reese on 2019-10-12.
+ * 定时任务
+ *
+ * @author zl
+ * @date 2019/9/27 11:02
  */
 @DisallowConcurrentExecution
 public class CheckAccountJob extends QuartzJobBean {

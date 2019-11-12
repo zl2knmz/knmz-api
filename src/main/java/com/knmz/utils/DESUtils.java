@@ -14,8 +14,8 @@ import javax.xml.bind.DatatypeConverter;
 /**
  * DESUtils
  *
- * @Author: chenzeping
- * @Date: 2019/7/25 13:47
+ * @author zl
+ * @date 2019/7/25 13:47
  */
 public class DESUtils {
     private final static Logger LOGGER = LoggerFactory.getLogger(DESUtils.class);

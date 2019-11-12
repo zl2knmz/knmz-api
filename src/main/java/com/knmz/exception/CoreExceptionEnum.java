@@ -1,7 +1,10 @@
 package com.knmz.exception;
 
 /**
- *  core模块的异常枚举定义类
+ * core模块的异常枚举定义类
+ *
+ * @author zl
+ * @date 2019/9/27 11:02
  */
 public enum CoreExceptionEnum implements AbstractServiceException {
     /**
@@ -42,7 +45,7 @@ public enum CoreExceptionEnum implements AbstractServiceException {
 
     MERCHANT_STATUS_FORBID(800, "商户被停用,请联系相关人员处理"),
     SERVICE_BUSY(801, "服务器繁忙,请稍后访问");
-	
+
 
     CoreExceptionEnum(int code, String message) {
         this.code = code;

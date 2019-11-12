@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * CodeGenerator
  *
- * @Author: chenzeping
- * @Date: 2019/9/3 18:03
+ * @author zl
+ * @date 2019/9/3 18:03
  */
 public final class CodeGenerator {
     private static long start = 1514736000000L;

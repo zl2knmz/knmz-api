@@ -8,7 +8,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Collection;
 
 /**
- *  业务异常工具类,语法类似junit断言语法 Created By Reese In 2019/1/14
+ * 业务异常工具类,语法类似junit断言语法
+ *
+ * @author zl
+ * @date 2019/9/27 11:02
  */
 public class AssertUtil {
     private AssertUtil() {
@@ -19,7 +22,7 @@ public class AssertUtil {
      *
      * @param expression
      * @param message
-     * @throws  ServiceException
+     * @throws ServiceException
      */
     public static void isFalse(boolean expression, String message) {
         if (expression) {

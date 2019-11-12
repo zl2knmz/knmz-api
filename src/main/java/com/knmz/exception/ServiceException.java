@@ -1,7 +1,10 @@
 package com.knmz.exception;
 
 /**
- *  业务异常的封装
+ * 业务异常的封装
+ *
+ * @author zl
+ * @date 2019/9/27 11:02
  */
 public class ServiceException extends RuntimeException {
 

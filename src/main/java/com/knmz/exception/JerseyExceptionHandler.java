@@ -12,8 +12,8 @@ import javax.ws.rs.ext.Provider;
 /**
  * JerseyExceptionHandler
  *
- * @Author: chenzeping
- * @Date: 2019/8/1 14:24
+ * @author zl
+ * @date 2019/8/1 14:24
  */
 @Provider
 public class JerseyExceptionHandler implements ExceptionMapper<Exception> {
