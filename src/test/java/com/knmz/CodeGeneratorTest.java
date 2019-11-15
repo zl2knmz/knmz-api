@@ -22,26 +22,7 @@ import java.util.Scanner;
  * @date 2019/11/13 15:02
  */
 public class CodeGeneratorTest {
-
-    /**
-     * <p>
-     * 读取控制台内容
-     * </p>
-     */
-    public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
-                return ipt;
-            }
-        }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
-
+    
     public static void main(String[] args) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -137,6 +118,23 @@ public class CodeGeneratorTest {
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
+    }
+
+    /**
+     * 读取控制台内容
+     */
+    private static String scanner(String tip) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + tip + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotEmpty(ipt)) {
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 
 }
