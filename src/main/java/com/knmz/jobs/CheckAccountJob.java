@@ -38,7 +38,7 @@ public class CheckAccountJob extends QuartzJobBean {
         if (success) {
             logger.info("checkAccount success. {}", phoneOrEmail);
         } else {
-            logger.error("checkAccount fail. {}", phoneOrEmail);
+            logger.error("checkAccount fail. [{}]", phoneOrEmail);
         }
 
     }
