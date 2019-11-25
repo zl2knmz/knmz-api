@@ -36,9 +36,9 @@ public class CheckAccountJob extends QuartzJobBean {
         String nick1 = "hello";
         boolean success2 = userService.batchUpdateNick(accountList, nick1);*/
         if (success) {
-            logger.info("checkAccount success");
+            logger.info("checkAccount success. {}", phoneOrEmail);
         } else {
-            logger.info("checkAccount success");
+            logger.error("checkAccount fail. {}", phoneOrEmail);
         }
 
     }
